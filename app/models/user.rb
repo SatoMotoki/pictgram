@@ -15,5 +15,10 @@ class User < ApplicationRecord
     format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,32}+\z/i }
   }
 
+  # 下のコードを使うことで様々な機能を実装できる
+  # 暗号化されたパスワードをデータベースのpassword_digestというカラムに保存できるようになる。
+  # passwordとpassword_confirmationが使えるようになる。また、存在性と値が一致するかどうかのバリデーション(チェック)も追加される。
+  # 引数の文字列がパスワードと一致するとUserオブジェクトを返し、間違っているとfalseを返す
+  # authenticateメソッドが使えるようになる。
   has_secure_password
 end

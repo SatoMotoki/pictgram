@@ -10,16 +10,28 @@
   </head>
 
   <body>
+    <%# flashがある場合表示 %>
+    <%# flashはハッシュである為ブロック変数はkeyとvalueの２つある。 %>
     <% flash.each do |key, value| %>
+    <%# alertクラスはscssで設定しているが、alert-keyのクラス名を設定している訳は分からない。＊＊＊メンターに確認＊＊＊。 %>
+    <%# roleは読み上げてくれる。差別解消のための実装 %>
       <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
     <% end %>
 
+    <%# navbarの実装 %>
     <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
       <div class="container">
+        <%# root_path => GET / pages#index %>
         <%= link_to root_path do %>
           <span><%= image_tag "icons/logo.png", class: "navbar-brand" %></span>
         <% end %>
         <ul class="nav navbar-nav navbar-right">
+
+          <%# logged_inメソッドはapplication_controller.rbで設定
+          current_userがnil(ログインしていない)ならfalse
+          nilでなければ(ログイン中)trueが格納されている%>
+          <%# つまりログインしている時としていない時でナビゲーション
+          バーが変わるように実装している%>
           <% if logged_in? %>
             <li>
               <%= link_to "#" do %>
@@ -53,7 +65,9 @@
     </nav>
 
     <%= yield %>
-
+    <!-- 以下のコードはjavascriptのライブライ jqueryのスクリプト
+    flashが５秒で消えるように実装。
+    jqueryは未勉強なので分からない。 -->
     <script>
       $(function(){
         $(".alert").fadeOut(5000);
