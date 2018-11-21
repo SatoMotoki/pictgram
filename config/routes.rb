@@ -4,9 +4,14 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'pages/help'
 
+  get     '/login',  to: 'sessions#new'
+  post    '/login',  to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
   resources :users
-  # resourcesで以下のルーティングが一括生成
-  # ただしコントローラのアクションは自分で定義する必要あり
+  resources :topics
+  # resourcesで以下のルーティングが一括生成(topicsは省略)
+  # ただしコントローラのアクションは設定する必要がある
   # GET users users#index
   # GET users/new users#new
   # POST users users#create
@@ -14,9 +19,4 @@ Rails.application.routes.draw do
   # GET users/:id/edit users#edit
   # PATCH users/:id users#update
   # DELETE users/:id users#delete
-
-  get     '/login',  to: 'sessions#new'
-  post    '/login',  to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
-
 end
