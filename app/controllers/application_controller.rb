@@ -5,9 +5,7 @@ class ApplicationController < ActionController::Base
   # 使い方 add_flash_types :タイプ名
   # controller redirect_to xxx, タイプ名: "メッセージ"
   add_flash_types :success, :info, :warning, :danger
-  #######課題 ヘルパーにメソッド共有#########
   helper_method :current_user, :logged_in?
-  #######課題 ヘルパーにメソッド共有#########
 
 
   def current_user
@@ -15,7 +13,7 @@ class ApplicationController < ActionController::Base
     # session[user_id]はログイン中のユーザー
     # それを元にfind_byメソッドを用いてusersテーブルからidカラム
     # の値がsession[:user_id]と等しいユーザーを取得し、変数に代入
-    # しかし、「=」ではダメなのだろうか？***メンターに確認***
+    # 「=」を使うと毎回dbにアクセスしてしまう。
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
