@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # CSRF対策。よく分かりません。デフォルト。
+  # CSRF対策。デフォルト。
   protect_from_forgery with: :exception
   # フラッシュタイプの指定
   # 使い方 add_flash_types :タイプ名
@@ -10,10 +10,10 @@ class ApplicationController < ActionController::Base
 
   def current_user
     # 「||=」は左の値がnilはまたはfalseなら右の値を代入する
-    # session[user_id]はログイン中のユーザー
-    # それを元にfind_byメソッドを用いてusersテーブルからidカラム
+    # session[user_id]はログイン中のユーザーid
+    # find_byメソッドを用いてUserテーブルからidカラム
     # の値がsession[:user_id]と等しいユーザーを取得し、変数に代入
-    # 「=」を使うと毎回dbにアクセスしてしまう。
+    # 「=」を使うと毎回dbにアクセスしてしまう(負荷増)
     @current_user ||= User.find_by(id: session[:user_id])
   end
 

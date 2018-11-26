@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.all
+    @topics = Topic.all.includes(:favorite_users)
   end
 
   def new
@@ -8,11 +8,9 @@ class TopicsController < ApplicationController
   end
 
   def create
-    # current_userはapplication_controllerで作成。ログイン中のユーザー
-    # しかし、その直後のtopics.newが分からない
-    # 新しいインスタンスの作成？なぜ複数形？
-    # そもそもメソッドの後にモデル(複数形).newメソッドというのを初見
-    # メンターに確認
+    # current_user => ログイン中のユーザー Userモデル
+    # Userモデルはhas_manyでtopicsと関連付けしている
+    # 以下のコードはログイン中のユーザーのtopicの新しいインスタンスを作成している。詳しくは関連付けでググレ
     @topic = current_user.topics.new(topic_params)
 
     if @topic.save

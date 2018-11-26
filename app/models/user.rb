@@ -17,4 +17,10 @@ class User < ApplicationRecord
   # 対象テーブル側が自分のidのカラムがある場合に使う
   # Topicsテーブルと関連付け
   has_many :topics
+  has_many :favorites
+
+  # throughを使うことで、そのユーザーがいいねしたtopicデータを取得できる
+  # userが紐づいているfavoritesが紐づいているtopicを取得している
+  # sourceをシンボルではなく文字列の理由は？
+  has_many :favorite_topics, through: :favorites, source: 'topic'
 end

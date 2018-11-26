@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   # GET users/:id/edit users#edit
   # PATCH users/:id users#update
   # DELETE users/:id users#delete
+  get 'favorites/index'
+  post '/favorites', to: 'favorites#create'
 end

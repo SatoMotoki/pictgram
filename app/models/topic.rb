@@ -3,11 +3,14 @@ class Topic < ApplicationRecord
   validates :description, presence: true
   validates :image, presence: true
 
-  # 以下のコードはテーブル間の関連付け(アソシエーション)
+  # テーブル間の関連付け(アソシエーション)
   # belongs_toは、自分のテーブルが対象テーブルのレコードに
   # 所属する場合(対象テーブルのidカラムがある)場合に使う
-  # Userテーブルと関連付け
+  # Userテーブルと関連付けをしている
   belongs_to :user
 
   mount_uploader :image, ImageUploader
+
+  has_many :favorites
+  has_many :favorite_users, through: :favorites, source: 'user'
 end
