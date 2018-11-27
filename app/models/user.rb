@@ -23,4 +23,5 @@ class User < ApplicationRecord
   # userが紐づいているfavoritesが紐づいているtopicを取得している
   # sourceをシンボルではなく文字列の理由は？
   has_many :favorite_topics, through: :favorites, source: 'topic'
+  has_many :comments
 end

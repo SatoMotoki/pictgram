@@ -1,0 +1,19 @@
+<div class="topic-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1 class="text-center">Add Comment</h1>
+        <!-- pathでエラーが発生したのでURLを指定-->
+        <!-- なんで@commentだけでなく@topicも指定しているのだろう？-->
+        <!-- 答えはtopicにネストされたcommentへ送信されるから-->
+        <%= form_for [@topic, @comment],:url => {:action => :create} do |f| %>
+          <div class="form-group">
+            <%= f.label :コメント %>
+            <%= f.text_area :text, class: 'form-control' %>
+          </div>
+            <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 <div class="topic-new-wrapper">
   <div class="container">
     <div class="row">
-      <!-- offsetはclass内であれば後に書いても12以内なら左に空白ができる -->
       <div class="col-md-6 col-md-offset-3">
         <h1 class="text-center">Add Picture</h1>
         <%= form_for @topic do |f| %>
@@ -14,7 +13,6 @@
             <%= f.text_area :description, class: 'form-control' %>
           </div>
 
-          <!-- 課題 ログアウト中に投稿ボタンを非表示-->
           <% if logged_in? %>
             <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
           <% end %>
