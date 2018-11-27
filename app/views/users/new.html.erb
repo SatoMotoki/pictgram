@@ -5,8 +5,7 @@
         <h1 class="text-center text-white">Sign in</h1>
         <!-- form_for(モデルオブジェクト [,オプション]) do |f| -->
         <!-- form_forメソッドは引数がレコードに存在しない場合 -->
-        <!-- createアクションへ送信される(今回はcreate) -->
-        <!-- モデルのフォームを作成 -->
+        <!-- createアクションへ送信される -->
         <%= form_for @user do |f| %>
           <div class="form-group">
             <%= f.label :name, class: 'text-white' %>

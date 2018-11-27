@@ -3,22 +3,17 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # user = User.find_by(email: params[:session][:email])
-    # 課題 ストロングパラメータに書き換え #
     # フォームから送信されたメールアドレスを取得し一致するユーザー
     # がいるか検索。
     user = User.find_by(email: session_params[:email])
-    # if user && user.authenticate(params[:session][:password])
-    # 課題 ストロングパラメータに書き換え #
     # 該当のメールアドレスを持つuserがいる。かつ
     # userのパスワードが正しい場合true
     # authenticateメソッド => has_secure_passwordメソッドを有効にすると
     # 使えるようになる。authenticateメソッドは渡された引数を暗号化し
     # password_digestの値と一致するか判定してくれる
     if user && user.authenticate(session_params[:password])
-      # 下でメソッドを定義。引数の()は省略されている。
+      # 下でメソッドを定義。引数の()は省略されている
       log_in user
-      # root_path => GET / pages#index
       redirect_to root_path, success: "ログインに成功しました"
     else
       flash.now[:danger] = "ログインに失敗しました"
@@ -45,7 +40,6 @@ class SessionsController < ApplicationController
   # @current_userの中にログインしていたユーザー情報が残ったままになって
   # いる為current_userメソッドが使えるままになっている
   # なのでnilを代入してユーザー情報を削除する
-  # 問題点が分からないためメンターに確認
   def log_out
     session.delete(:user_id)
     @current_user = nil
@@ -53,9 +47,7 @@ class SessionsController < ApplicationController
 
 # requireのキーである「:session」は
 # view/sessions/new.html.erbのform_forのリソース名
-#######課題 ストロングパラメータ######
   def session_params
     params.require(:session).permit(:email, :password)
   end
-#######課題 ストロングパラメータ######
 end

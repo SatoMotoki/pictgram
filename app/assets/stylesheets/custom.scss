@@ -140,17 +140,25 @@ h1, h2 {
       margin-left: 20px;
     }
 
-    // 以下の通りに指定しても反映されず
-    // メンターに確認
-    // .comment-text {
-    //   padding-right: 20px;
-    //   padding-left: 20px;
-    // }
+    .comments-title {
+      padding-right: 20px;
+      padding-left: 20px;
+      font-weight: bold;
+    }
 
-    // .comments-title {
-    //   padding-right: 20px;
-    //   padding-left: 20px;
-    // }
+    .comment-text {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    .nonfavorite {
+      color: red;
+    }
+
+    .favorite {
+      color: silver;
+    }
+
 
   }
 }

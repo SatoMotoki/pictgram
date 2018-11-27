@@ -8,24 +8,27 @@
               <%= topic.user.name %>
             </h2>
             <%= image_tag topic.image.url %>
-            <!-- !は反転.favorite_usersはtopicに紐づいているfavoriteに紐づいているuserを取得。include?()は引数が含まれていればtrue。でなきゃfalse。いいねをしているユーザーに自分も含まれていたらハートを消す処理。いいねしていない=falseなら反転してハートが表示される-->
-            <% if !topic.favorite_users.include?(current_user) %>
-            <!-- favorite_path => POST /favorites favorites#create-->
+            <!-- favorite_usersはtopicに紐づいているfavoriteに紐づいているuserを取得。include?()は引数が含まれていればtrue -->
+            <% if topic.favorite_users.include?(current_user) %>
             <!-- link_toのパスに引数(シンボル)を与えるとlink_toにパラメータを渡せる。今回の場合、favorite_controllerのcreateアクションの中のparams[:topic_id]にtopic.idが入る-->
-              <%= link_to favorites_path(topic_id: topic.id), method: :post do %>
-                <i class="fas fa-heart"></i>
-                <%# <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
-              <% end %>
+                <%= link_to favorites_path(topic_id: topic.id), method: :delete do %>
+                  <i class="fas fa-heart fa-2x topic-index-icon nonfavorite"></i>
+                <% end %>
+              <% else %>
+                <%= link_to favorites_path(topic_id: topic.id), method: :post do %>
+                  <i class="fas fa-heart fa-2x topic-index-icon favorite"></i>
+                <% end %>
             <% end %>
+            <%= topic.favorites.all.count %>
             <%= link_to new_topic_comment_path(topic_id: topic.id) do %>
               <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
             <% end %>
             <p class="topic-text">
               <%= topic.description %>
             </p>
-            <h4 class="topic-text">コメント</h4>
+            <h4 class="comments-title">コメント</h4>
             <% topic.comments.each do |comment| %>
-              <p class="topic-text">
+              <p class="comment-text">
                 <%= comment.text %>
               </p>
             <% end %>

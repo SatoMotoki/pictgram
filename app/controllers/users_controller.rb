@@ -5,11 +5,9 @@ class UsersController < ApplicationController
 
   # views/users/new.html.erbより
   # フォームが入力され送信されたらcreateアクションへ送信される
-  # (user_params)は下で定義している
   def create
     @user = User.new(user_params)
     if @user.save
-      # root_path => GET / pages#index
       # ApplicationControllerでadd_flash_typeでフラッシュの指定をしているため、タイプ名: "メッセージ" でフラッシュが使える
       redirect_to root_path, success: "登録が完了しました"
     else
@@ -17,8 +15,6 @@ class UsersController < ApplicationController
       # flash.now[:notice]で設定
       # :dangerはApplicationControllerのadd_flash_typeで指定
       flash.now[:danger] = "登録に失敗しました"
-      # render => アクションを経由しないでviewを呼び出す
-      # オプションは省略可能。。。？
       render :new
     end
   end

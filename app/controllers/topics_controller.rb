@@ -8,7 +8,6 @@ class TopicsController < ApplicationController
   end
 
   def create
-    # current_user => ログイン中のユーザー Userモデル
     # Userモデルはhas_manyでtopicsと関連付けしている
     # 以下のコードはログイン中のユーザーのtopicの新しいインスタンスを作成している。詳しくは関連付けでググレ
     @topic = current_user.topics.new(topic_params)

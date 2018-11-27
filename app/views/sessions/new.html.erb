@@ -8,7 +8,6 @@
         具体的に指定する必要がある
         「:session」はcontroller内でも指定するがリソース名については
         こことcontrollerで同じであればなんでもいい-->
-        <!-- url: login_path => /loginへPOST -->
         <%= form_for :session, url: login_path do |f| %>
           <div class="form-group">
             <%= f.label :email, class: "text-white" %>

@@ -12,10 +12,6 @@ class User < ApplicationRecord
   # authenticateメソッドが使えるようになる。
   has_secure_password
 
-  # 以下のコードはテーブル間の関連付け(アソシエーション)
-  # has_manyは、自分のテーブルが対象テーブルを複数もつ場合に使う
-  # 対象テーブル側が自分のidのカラムがある場合に使う
-  # Topicsテーブルと関連付け
   has_many :topics
   has_many :favorites
 
