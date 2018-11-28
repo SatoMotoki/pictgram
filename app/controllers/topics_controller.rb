@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.all.includes(:favorite_users, :comments)
+    @topics = Topic.all.includes(:favorite_users, :comments).order(updated_at: :desc)
   end
 
   def new
