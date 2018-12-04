@@ -16,6 +16,7 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'carrierwave'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -23,7 +24,6 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
-  gem 'carrierwave'
 end
 
 group :development do
